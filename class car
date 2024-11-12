@@ -1,0 +1,74 @@
+class Car:
+    def __init__(self, color, seats):
+        self.color = color
+        self.seats = seats
+        self.is_engine_on = False
+        self.speed = 0
+
+    # Start the car's engine
+    def start(self):
+        if not self.is_engine_on:
+            self.is_engine_on = True
+            print("Engine started.")
+        else:
+            print("Engine is already on.")
+
+    # Stop the car's engine
+    def stop(self):
+        if self.is_engine_on:
+            self.is_engine_on = False
+            self.speed = 0  # Car stops moving when engine is off
+            print("Engine stopped.")
+        else:
+            print("Engine is already off.")
+
+    # Accelerate the car
+    def accelerate(self, amount):
+        if self.is_engine_on:
+            self.speed += amount
+            print(f"Accelerated by {amount} km/h. Current speed: {self.speed} km/h.")
+        else:
+            print("Start the engine first to accelerate.")
+
+    # Brake the car
+    def brake(self, amount):
+        if self.speed > 0:
+            self.speed -= amount
+            if self.speed < 0:
+                self.speed = 0
+            print(f"Braked by {amount} km/h. Current speed: {self.speed} km/h.")
+        else:
+            print("The car is already stationary.")
+
+    # Display the car's current status
+    def status(self):
+        engine_status = "on" if self.is_engine_on else "off"
+        print(f"Car status:\nColor: {self.color}, Seats: {self.seats}, Engine: {engine_status}, Speed: {self.speed} km/h")
+
+# Main function to demonstrate usage of Car class
+def main():
+    # Create a car instance
+    my_car = Car(color="red", seats=5)
+    
+    # Display car's initial status
+    my_car.status()
+    
+    # Start the engine
+    my_car.start()
+    
+    # Accelerate
+    my_car.accelerate(20)
+    my_car.accelerate(15)
+    
+    # Brake
+    my_car.brake(10)
+    
+    # Stop the car
+    my_car.stop()
+    
+    # Display final status
+    my_car.status()
+
+# Run the main function
+if __name__ == "__main__":
+    main()
